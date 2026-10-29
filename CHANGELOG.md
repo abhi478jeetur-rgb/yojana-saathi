@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [0.2.0] - 2026-10-29
+
+### Added
+- Appwrite mode, enabled when `VITE_APPWRITE_ENDPOINT` and `VITE_APPWRITE_PROJECT_ID` are set.
+- TablesDB: scheme catalogue table (public read) and per-user checklist table with row security, loaded through an anonymous Appwrite session.
+- VectorsDB: `functions/match-schemes` embeds the query with the built-in `nomic-embed-text` model and ranks schemes with `Query.vectorCosine`.
+- Hybrid ranking that blends vector similarity with the rule-based score, with automatic fallback to rule matching.
+- `scripts/seed.mjs` creates the databases, tables, index and vector collection and seeds rows + embeddings.
+- `.env.example` listing every variable and API key scope.
+
 ## [0.1.0] - 2026-10-29
 
 ### Added
