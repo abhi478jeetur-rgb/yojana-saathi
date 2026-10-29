@@ -34,6 +34,6 @@ All notable changes to this project are documented here. The format follows [Kee
 - GSAP animations (page transitions, staggered cards, nav bubble, count-up, button press) that respect `prefers-reduced-motion`.
 - Voice input through the Web Speech API (en-IN) where supported.
 
-[1.0.0]: https://github.com/<owner>/yojana-saathi/releases/tag/v1.0.0
-[0.2.0]: https://github.com/<owner>/yojana-saathi/releases/tag/v0.2.0
-[0.1.0]: https://github.com/<owner>/yojana-saathi/releases/tag/v0.1.0
+[1.0.0]: https://github.com/abhi478jeetur-rgb/yojana-saathi/releases/tag/v1.0.0
+[0.2.0]: https://github.com/abhi478jeetur-rgb/yojana-saathi/releases/tag/v0.2.0
+[0.1.0]: https://github.com/abhi478jeetur-rgb/yojana-saathi/releases/tag/v0.1.0
