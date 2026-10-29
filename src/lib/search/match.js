@@ -91,7 +91,7 @@ export function blendResults(ruleResults, vectorHits, schemes, { ruleWeight = 0.
   for (const v of vectorHits || []) {
     const existing = byId.get(v.id)
     if (existing) existing.vector = v.score
-    else if (v.score >= 0.6) {
+    else if (v.score >= 0.85) {
       const scheme = schemes.find((s) => s.id === v.id)
       if (scheme) byId.set(v.id, { scheme, relevance: 0, vector: v.score, concepts: [], reason: 'Close in meaning to what you described.' })
     }

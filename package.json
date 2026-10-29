@@ -1,18 +1,16 @@
 {
   "name": "yojana-saathi",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k \"npm:dev:api\" \"npm:dev:web\"",
-    "dev:web": "vite",
-    "dev:api": "node scripts/dev-api.mjs",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "embed": "node scripts/embed.mjs",
-    "seed": "node scripts/seed.mjs",
     "test": "vitest run",
-    "screenshots": "node scripts/screenshots.mjs"
+    "seed": "node scripts/seed.mjs",
+    "screenshots": "node scripts/screenshots.mjs",
+    "demo": "node scripts/demo-gif.mjs"
   },
   "dependencies": {
     "@fontsource/plus-jakarta-sans": "^5.3.0",
