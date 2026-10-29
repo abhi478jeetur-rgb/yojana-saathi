@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+- Compressed demo clips (`public/videos/demo-desktop.mp4`, `public/videos/demo-mobile.mp4`, about 1.5 MB each) shown in the landing "See it in action" section in browser and phone frames, and linked from the README.
+- `scripts/demo-video.mjs` records the full landing-to-app flow; `scripts/clean-frames.py` replaces half-painted frames from Firefox recordings.
+
 ## [1.1.0] - 2026-10-29
 
 ### Added

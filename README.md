@@ -81,6 +81,10 @@ It returns the central schemes that fit, ranked by relevance, each with:
 >
 > **Demo video:** _coming soon, link will be added here_ <!-- TODO: add the 2-3 minute demo video link -->
 
+**Demo clips** (also autoplaying in the landing page's "See it in action" section):
+[desktop, 1440x900](public/videos/demo-desktop.mp4) · [mobile, 390x844](public/videos/demo-mobile.mp4).
+Flow: Hinglish query, thinking state, typed reply, matched cards, PM-KISAN documents ticked and saved, Checklist, Schemes, then an English query.
+
 <img src="docs/assets/desktop-landing.png" alt="Landing page hero: SAATHI with a sunset capsule window showing Golu" width="100%" />
 
 <div align="center">
@@ -195,6 +199,8 @@ yojana-saathi/
 ├── scripts/
 │   ├── seed.mjs                   # creates TablesDB + VectorsDB and seeds data
 │   ├── screenshots.mjs            # Playwright screenshots
+│   ├── demo-video.mjs             # Playwright demo recording (landing -> app flow)
+│   ├── clean-frames.py            # drops half-painted frames from recordings
 │   └── demo-gif.mjs               # Playwright video -> GIF
 ├── src/
 │   ├── main.jsx                   # tiny router: "/" landing, "/app" app
