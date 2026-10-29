@@ -79,7 +79,7 @@ It returns the central schemes that fit, ranked by relevance, each with:
 
 > **Live demo:** https://yojana-saathi-beta.vercel.app (landing) and https://yojana-saathi-beta.vercel.app/app (the app, no sign-up)
 >
-> **Demo video:** _coming soon, link will be added here_ <!-- TODO: add the 2-3 minute demo video link -->
+> **Demo video (2:23):** [Watch / download](https://gofile.io/d/1dcCs3YE) <!-- YouTube link will replace this -->
 
 **Demo clips** (also autoplaying in the landing page's "See it in action" section):
 [desktop, 1440x900](public/videos/demo-desktop.mp4) · [mobile, 390x844](public/videos/demo-mobile.mp4).
