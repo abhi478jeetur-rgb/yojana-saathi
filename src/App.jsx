@@ -33,7 +33,7 @@ export default function App() {
   useGSAP(
     () => {
       if (reduceMotion()) return
-      gsap.fromTo(pageRef.current, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power3.out' })
+      gsap.fromTo(pageRef.current, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' })
     },
     { dependencies: [tab], scope: pageRef }
   )
