@@ -9,3 +9,4 @@ test-results
 .DS_Store
 docs/assets/_video
 design-ref
+docs/assets/_*.png

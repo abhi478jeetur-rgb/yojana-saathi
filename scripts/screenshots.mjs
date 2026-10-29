@@ -1,25 +1,35 @@
-// Takes README screenshots with Playwright. Run `npm run build` first.
-// Usage: node scripts/screenshots.mjs
-import { spawn } from 'node:child_process'
+// Takes README screenshots of the landing page ("/") and the app ("/app") with Playwright (Firefox).
+// Run `npm run build` first. Usage: node scripts/screenshots.mjs
+// The built dist is served through request interception (sandboxed Firefox may block local http).
+import { existsSync } from 'node:fs'
 import { firefox } from 'playwright'
 
-const PORT = 4179
-const URL = `http://127.0.0.1:${PORT}/`
+const ORIGIN = 'https://yojana.demo'
 const OUT = 'docs/assets'
 const QUERY = 'main kisan hoon, 2 acre zameen, beti college jaayegi'
 
-const server = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort', '--host', '127.0.0.1'], { stdio: 'ignore', detached: true })
-await new Promise((r) => setTimeout(r, 2500))
-
-// Bypass any HTTP proxy for localhost
 const browser = await firefox.launch({ firefoxUserPrefs: { 'network.proxy.type': 0 } })
 try {
   for (const [name, viewport] of [
     ['mobile', { width: 390, height: 844 }],
     ['desktop', { width: 1440, height: 900 }]
   ]) {
-    const page = await browser.newPage({ viewport, deviceScaleFactor: 2, reducedMotion: 'reduce' })
-    await page.goto(URL)
+    const ctx = await browser.newContext({ viewport, deviceScaleFactor: 2, reducedMotion: 'reduce' })
+    await ctx.route(`${ORIGIN}/**`, (r) => {
+      let f = decodeURIComponent(new URL(r.request().url()).pathname)
+      if (f === '/' || !existsSync('dist' + f)) f = '/index.html'
+      r.fulfill({ path: 'dist' + f })
+    })
+    const page = await ctx.newPage()
+
+    await page.goto(`${ORIGIN}/`)
+    await page.waitForSelector('.lp-capsule img')
+    await page.waitForTimeout(1200)
+    await page.screenshot({ path: `${OUT}/${name}-landing.png` })
+    await page.screenshot({ path: `${OUT}/_${name}-landing-full.png`, fullPage: true, scale: 'css' })
+
+    await page.click('.lp-foot .lp-pill')
+    await page.waitForSelector('#q')
     await page.waitForTimeout(600)
     await page.screenshot({ path: `${OUT}/${name}-home.png` })
 
@@ -31,7 +41,6 @@ try {
     await page.waitForTimeout(300)
     await page.screenshot({ path: `${OUT}/${name}-results.png` })
 
-    // tick two documents and save, then open checklist
     const docs = page.locator('.scheme-card').first().locator('.docs button')
     await docs.nth(0).click()
     await docs.nth(1).click()
@@ -42,10 +51,9 @@ try {
     await page.click(`${nav} button:has-text("Checklist")`)
     await page.waitForTimeout(500)
     await page.screenshot({ path: `${OUT}/${name}-checklist.png` })
-    await page.close()
+    await ctx.close()
   }
 } finally {
   await browser.close()
-  process.kill(-server.pid)
 }
 console.log('screenshots saved to', OUT)
