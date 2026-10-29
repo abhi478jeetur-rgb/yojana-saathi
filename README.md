@@ -71,11 +71,17 @@ It returns the central schemes that fit, ranked by relevance, each with:
 | **Voice input** | Web Speech API (`en-IN`) where the browser supports it. |
 | **Made for everyone** | Large text, big buttons, example chips you can tap, no sign-up. |
 | **Sunset theme** | Warm dark UI, glass cards, raised-bubble bottom navigation on mobile, two-column layout on desktop. |
+| **Landing page + app in one deploy** | `/` is an animated landing page (capsule hero, GSAP ScrollTrigger sections), `/app` is the app. A tiny router and Vercel SPA rewrites keep both on one Vite build. |
+| **Thoughtful answers** | A short thinking state, a typed chat-style summary of what Golu understood ("You look like a small farmer with a daughter heading to college..."), then result cards streamed in one by one. |
 | **Smooth, respectful motion** | GSAP page transitions, staggered cards, sliding nav bubble, count-up; disabled for `prefers-reduced-motion`. |
 
 ## Demo
 
+> **Live demo:** https://yojana-saathi-beta.vercel.app (landing) and https://yojana-saathi-beta.vercel.app/app (the app, no sign-up)
+>
 > **Demo video:** _coming soon, link will be added here_ <!-- TODO: add the 2-3 minute demo video link -->
+
+<img src="docs/assets/desktop-landing.png" alt="Landing page hero: SAATHI with a sunset capsule window showing Golu" width="100%" />
 
 <div align="center">
 <img src="docs/assets/demo.gif" alt="Main flow: type a Hinglish query, see matched schemes, tick documents, open the checklist" width="300" />
@@ -177,7 +183,7 @@ npm test           # matching tests
 | Command | What it does |
 |---|---|
 | `npm run build` | Production build into `dist/` |
-| `npm run screenshots` | Mobile (390x844) and desktop (1440x900) screenshots into `docs/assets/` |
+| `npm run screenshots` | Landing and app screenshots at 390x844 and 1440x900 into `docs/assets/` |
 | `npm run demo` | Records the main flow and writes `docs/assets/demo.gif` (needs ffmpeg) |
 
 ## Project structure
@@ -191,14 +197,18 @@ yojana-saathi/
 │   ├── screenshots.mjs            # Playwright screenshots
 │   └── demo-gif.mjs               # Playwright video -> GIF
 ├── src/
-│   ├── components/                # Nav, Home, SearchBox, SchemeCard, Browse, Checklist, About
+│   ├── main.jsx                   # tiny router: "/" landing, "/app" app
+│   ├── landing/                   # landing page (capsule hero, sections, demo videos)
+│   ├── components/                # Nav, Home, Thinking, TypedText, SearchBox, SchemeCard, Browse, Checklist, About
 │   ├── data/schemes.js            # bundled data + example queries
-│   ├── lib/search/                # concepts (synonyms) + matching and blending
+│   ├── lib/search/                # concepts (synonyms), matching, blending and reply summary
+│   ├── lib/router.js              # navigate(), usePath(), <Link>
 │   ├── lib/appwrite/              # TablesDB, Auth, Functions client
 │   ├── lib/useChecklist.js        # localStorage + Appwrite sync
 │   ├── lib/motion.js              # GSAP helpers, reduced-motion aware
 │   └── styles.css                 # Sunset theme
-├── tests/match.test.js            # Vitest matching tests
+├── tests/                         # Vitest matching + summary tests
+├── vercel.json                    # SPA rewrites so /app works on refresh
 └── docs/assets/                   # banner, screenshots, demo GIF
 ```
 
