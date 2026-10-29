@@ -1,16 +1,20 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Sparkles } from 'lucide-react'
 import SearchBox from './SearchBox.jsx'
 import SchemeCard from './SchemeCard.jsx'
+import Thinking from './Thinking.jsx'
+import TypedText from './TypedText.jsx'
+import golu from '../assets/golu/golu-wave.webp'
 import { gsap, reduceMotion, useGSAP } from '../lib/motion.js'
 
-export default function Home({ query, setQuery, onSearch, search, loading, checklist }) {
+function Answer({ search, checklist }) {
+  const [revealed, setRevealed] = useState(false)
   const listRef = useRef(null)
   const countRef = useRef(null)
 
   useGSAP(
     () => {
-      if (!search) return
+      if (!revealed) return
       const n = search.results.length
       if (reduceMotion()) {
         countRef.current && (countRef.current.textContent = n)
@@ -23,11 +27,43 @@ export default function Home({ query, setQuery, onSearch, search, loading, check
         ease: 'power2.out',
         onUpdate: () => countRef.current && (countRef.current.textContent = Math.round(counter.v))
       })
-      gsap.from('.scheme-card', { autoAlpha: 0, y: 28, duration: 0.5, stagger: 0.07, ease: 'power3.out' })
+      gsap.from('.results-head', { autoAlpha: 0, y: 12, duration: 0.4, ease: 'power2.out' })
+      gsap.from('.scheme-card', { autoAlpha: 0, y: 28, duration: 0.55, stagger: 0.14, delay: 0.15, ease: 'power3.out' })
     },
-    { dependencies: [search], scope: listRef }
+    { dependencies: [revealed], scope: listRef }
   )
 
+  return (
+    <div ref={listRef}>
+      <div className="chat-row">
+        <span className="avatar">
+          <img src={golu} alt="" width="44" height="44" />
+        </span>
+        <p className="chat-bubble bot">
+          <TypedText text={search.summary} onDone={() => setRevealed(true)} />
+        </p>
+      </div>
+      {revealed && (
+        <>
+          <div className="results-head">
+            <h2>
+              <span ref={countRef} className="count-up">
+                0
+              </span>{' '}
+              {search.results.length === 1 ? 'scheme' : 'schemes'} for you
+            </h2>
+            {search.semantic && <span className="pill">Smart search</span>}
+          </div>
+          {search.results.map((r, i) => (
+            <SchemeCard key={r.scheme.id} scheme={r.scheme} match={r} checklist={checklist} defaultOpen={i === 0} />
+          ))}
+        </>
+      )}
+    </div>
+  )
+}
+
+export default function Home({ query, setQuery, onSearch, search, loading, checklist }) {
   return (
     <div className="home-grid">
       <section className="hero">
@@ -41,7 +77,7 @@ export default function Home({ query, setQuery, onSearch, search, loading, check
         <SearchBox value={query} onChange={setQuery} onSubmit={onSearch} loading={loading} />
       </section>
 
-      <section className="results" ref={listRef} aria-live="polite">
+      <section className="results" aria-live="polite">
         {!search && (
           <div className="empty glass">
             <h2>How it works</h2>
@@ -60,23 +96,10 @@ export default function Home({ query, setQuery, onSearch, search, loading, check
         )}
         {search && (
           <>
-            <div className="results-head">
-              <h2>
-                <span ref={countRef} className="count-up">
-                  0
-                </span>{' '}
-                {search.results.length === 1 ? 'scheme' : 'schemes'} for you
-              </h2>
-              {search.semantic && <span className="pill">Smart search</span>}
+            <div className="chat-row user">
+              <p className="chat-bubble user">{search.query}</p>
             </div>
-            {search.results.length === 0 && (
-              <div className="empty glass">
-                <p>We could not find a match. Try adding your work (farmer, shop, student), age, or family details.</p>
-              </div>
-            )}
-            {search.results.map((r, i) => (
-              <SchemeCard key={r.scheme.id} scheme={r.scheme} match={r} checklist={checklist} defaultOpen={i === 0} />
-            ))}
+            {search.pending ? <Thinking /> : <Answer key={search.at} search={search} checklist={checklist} />}
           </>
         )}
       </section>

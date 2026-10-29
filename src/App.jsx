@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { SCHEMES } from './data/schemes.js'
 import { appwriteEnabled, fetchSchemes, vectorSearch } from './lib/appwrite/index.js'
 import { blendResults, matchSchemes } from './lib/search/match.js'
+import { buildSummary } from './lib/search/summary.js'
 import { useChecklist } from './lib/useChecklist.js'
 import { gsap, reduceMotion, useGSAP } from './lib/motion.js'
 import Nav from './components/Nav.jsx'
@@ -19,6 +20,7 @@ export default function App() {
   const [loading, setLoading] = useState(false)
   const checklist = useChecklist()
   const pageRef = useRef(null)
+  const searchId = useRef(0)
 
   useEffect(() => {
     if (!appwriteEnabled) return
@@ -41,8 +43,11 @@ export default function App() {
   async function runSearch(text) {
     const q = text.trim()
     if (!q) return
+    const id = ++searchId.current
+    const started = Date.now()
     setLoading(true)
-    const { results } = matchSchemes(q, schemes)
+    setSearch({ query: q, pending: true, at: started })
+    const { profile, results } = matchSchemes(q, schemes)
     let final = results
     let semantic = false
     if (mode === 'appwrite') {
@@ -54,7 +59,11 @@ export default function App() {
         console.warn('[appwrite] vector search unavailable, rule matching only', err)
       }
     }
-    setSearch({ query: q, results: final, semantic })
+    // A short "thinking" beat so the answer feels considered (skipped for reduced motion).
+    const wait = (reduceMotion() ? 0 : 1700) - (Date.now() - started)
+    if (wait > 0) await new Promise((r) => setTimeout(r, wait))
+    if (id !== searchId.current) return
+    setSearch({ query: q, results: final, semantic, summary: buildSummary(profile, final), at: started })
     setLoading(false)
   }
 

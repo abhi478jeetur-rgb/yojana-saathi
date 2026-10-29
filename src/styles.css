@@ -777,3 +777,151 @@ h4 {
     transition: none !important;
   }
 }
+
+/* ---------- chat-style answer ---------- */
+.chat-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.chat-row.user {
+  justify-content: flex-end;
+}
+.avatar {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, rgba(251, 185, 49, 0.35), rgba(234, 97, 19, 0.15));
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.avatar img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+.thinking-avatar img {
+  animation: bob 0.9s ease-in-out infinite alternate;
+}
+@keyframes bob {
+  to {
+    transform: translateY(-4px) rotate(-4deg);
+  }
+}
+.chat-bubble {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 20px;
+  max-width: 88%;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.chat-bubble.user {
+  background: var(--grad);
+  color: var(--dark);
+  font-weight: 600;
+  border-bottom-right-radius: 6px;
+}
+.chat-bubble.bot {
+  background: rgba(255, 236, 210, 0.08);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.think-step {
+  animation: fadeStep 0.35s ease;
+}
+@keyframes fadeStep {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.dots {
+  display: inline-flex;
+  gap: 4px;
+}
+.dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--o3);
+  animation: dot 1s infinite ease-in-out;
+}
+.dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes dot {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 3px;
+  vertical-align: -2px;
+  background: var(--o3);
+  animation: blinkCaret 0.8s steps(1) infinite;
+}
+@keyframes blinkCaret {
+  50% {
+    opacity: 0;
+  }
+}
+.skeleton {
+  padding: 20px;
+  margin-bottom: 14px;
+  display: grid;
+  gap: 12px;
+}
+.sk {
+  display: block;
+  height: 14px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255, 227, 179, 0.06) 25%, rgba(255, 227, 179, 0.16) 50%, rgba(255, 227, 179, 0.06) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+.sk-tag {
+  width: 90px;
+  height: 22px;
+  border-radius: 999px;
+}
+.sk-title {
+  width: 60%;
+  height: 22px;
+}
+.sk-line.short {
+  width: 70%;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .thinking-avatar img,
+  .think-step,
+  .dots i,
+  .caret,
+  .sk {
+    animation: none;
+  }
+}
