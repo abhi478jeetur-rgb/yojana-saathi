@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.local
+.model-cache
+docs-cache
+test-results
+*.log
+.DS_Store
+docs/assets/_video
