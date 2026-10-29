@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+- Moved hosting to Appwrite Sites: https://yojana-saathi.appwrite.network. Removed `vercel.json`; the app now runs fully on Appwrite (Sites + TablesDB + Auth).
+- Live Appwrite mode on: schemes read from TablesDB, checklists saved per anonymous user.
+
 ## [Unreleased]
 
 ### Added

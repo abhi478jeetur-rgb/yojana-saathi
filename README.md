@@ -71,13 +71,13 @@ It returns the central schemes that fit, ranked by relevance, each with:
 | **Voice input** | Web Speech API (`en-IN`) where the browser supports it. |
 | **Made for everyone** | Large text, big buttons, example chips you can tap, no sign-up. |
 | **Sunset theme** | Warm dark UI, glass cards, raised-bubble bottom navigation on mobile, two-column layout on desktop. |
-| **Landing page + app in one deploy** | `/` is an animated landing page (capsule hero, GSAP ScrollTrigger sections), `/app` is the app. A tiny router and Vercel SPA rewrites keep both on one Vite build. |
+| **Landing page + app in one deploy** | `/` is an animated landing page (capsule hero, GSAP ScrollTrigger sections), `/app` is the app. A tiny router and an SPA fallback keep both on one Vite build, hosted on Appwrite Sites. |
 | **Thoughtful answers** | A short thinking state, a typed chat-style summary of what Golu understood ("You look like a small farmer with a daughter heading to college..."), then result cards streamed in one by one. |
 | **Smooth, respectful motion** | GSAP page transitions, staggered cards, sliding nav bubble, count-up; disabled for `prefers-reduced-motion`. |
 
 ## Demo
 
-> **Live demo:** https://yojana-saathi-beta.vercel.app (landing) and https://yojana-saathi-beta.vercel.app/app (the app, no sign-up)
+> **Live demo:** https://yojana-saathi.appwrite.network (landing) and https://yojana-saathi.appwrite.network/app (the app, no sign-up)
 >
 > **Demo video (2:23):** [Watch on YouTube](https://youtu.be/aGmhpYSczRE) · [Download MP4](https://gofile.io/d/1dcCs3YE)
 
@@ -214,7 +214,6 @@ yojana-saathi/
 │   ├── lib/motion.js              # GSAP helpers, reduced-motion aware
 │   └── styles.css                 # Sunset theme
 ├── tests/                         # Vitest matching + summary tests
-├── vercel.json                    # SPA rewrites so /app works on refresh
 └── docs/assets/                   # banner, screenshots, demo GIF
 ```
 

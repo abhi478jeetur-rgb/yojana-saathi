@@ -35,7 +35,7 @@ export default function Demos() {
           <i />
           <i />
           <i />
-          <span>yojana-saathi-beta.vercel.app/app</span>
+          <span>yojana-saathi.appwrite.network/app</span>
         </div>
         <LazyVideo {...desk} />
         <figcaption>Desktop, 1440 × 900</figcaption>
