@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.0.0] - 2026-10-29
+
+### Added
+- Vitest suite covering matching on eight sample English and Hinglish queries plus profile extraction and hybrid blending.
+- Playwright scripts for mobile and desktop screenshots and an animated demo GIF.
+- README with banner, badges, architecture diagram, setup guide and screenshots; MIT license.
+
+### Changed
+- Page transitions animate opacity only (smoother in video capture).
+
 ## [0.2.0] - 2026-10-29
 
 ### Added
@@ -23,3 +33,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Mobile bottom navigation with a raised bubble and curved notch; desktop top navigation with a two-column layout.
 - GSAP animations (page transitions, staggered cards, nav bubble, count-up, button press) that respect `prefers-reduced-motion`.
 - Voice input through the Web Speech API (en-IN) where supported.
+
+[1.0.0]: https://github.com/<owner>/yojana-saathi/releases/tag/v1.0.0
+[0.2.0]: https://github.com/<owner>/yojana-saathi/releases/tag/v0.2.0
+[0.1.0]: https://github.com/<owner>/yojana-saathi/releases/tag/v0.1.0
