@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import { House, LayoutGrid, ListChecks, Info } from 'lucide-react'
 import { gsap, reduceMotion } from '../lib/motion.js'
+import { Link } from '../lib/router.js'
 
 export const TABS = [
   { id: 'home', label: 'Home', Icon: House },
@@ -11,12 +12,12 @@ export const TABS = [
 
 function Brand() {
   return (
-    <div className="brand">
+    <Link to="/" className="brand" aria-label="Yojana Saathi home">
       <img src="/logo.svg" alt="" width="36" height="36" />
       <span>
         Yojana <b>Saathi</b>
       </span>
-    </div>
+    </Link>
   )
 }
 
