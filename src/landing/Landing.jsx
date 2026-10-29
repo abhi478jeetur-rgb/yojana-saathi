@@ -35,6 +35,13 @@ import './landing.css'
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 export const GITHUB_URL = 'https://github.com/abhi478jeetur-rgb/yojana-saathi'
+export const YOUTUBE_URL = 'https://youtu.be/aGmhpYSczRE'
+
+const YoutubeIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" />
+  </svg>
+)
 
 const GithubIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -156,9 +163,14 @@ export default function Landing() {
               <a href="#appwrite">Appwrite</a>
             </nav>
           </div>
-          <a className="lp-gh" href={GITHUB_URL} target="_blank" rel="noreferrer">
-            <GithubIcon size={16} /> GitHub
-          </a>
+          <div className="lp-hd-actions">
+            <a className="lp-gh lp-yt" href={YOUTUBE_URL} target="_blank" rel="noreferrer" aria-label="Watch the demo on YouTube" title="Watch the demo on YouTube">
+              <YoutubeIcon size={18} />
+            </a>
+            <a className="lp-gh" href={GITHUB_URL} target="_blank" rel="noreferrer">
+              <GithubIcon size={16} /> GitHub
+            </a>
+          </div>
         </header>
 
         <div className="lp-stage">
@@ -363,6 +375,9 @@ export default function Landing() {
               </Link>
               <a className="lp-ghost" href={GITHUB_URL} target="_blank" rel="noreferrer">
                 <GithubIcon /> View on GitHub
+              </a>
+              <a className="lp-ghost" href={YOUTUBE_URL} target="_blank" rel="noreferrer">
+                <YoutubeIcon /> Watch demo
               </a>
             </div>
           </div>
