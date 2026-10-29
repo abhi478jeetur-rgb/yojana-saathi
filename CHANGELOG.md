@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-10-29
+
+### Added
+- Landing page at `/` inside the same app: a huge "SAATHI" word split around a capsule window that loops wide pill, circle, thin line and back (GSAP), showing a new sunset-village scene with Golu; minimal nav, drop-cap blurb, thin rule and pill CTA; problem, how it works, see it in action, features, Appwrite diagram, schemes marquee and final CTA sections with ScrollTrigger animations.
+- The app now lives at `/app`; a tiny dependency-free router handles both routes and `vercel.json` rewrites keep `/app` working on refresh. The app logo links back to `/`.
+- Thoughtful results: a short thinking state (animated Golu, cycling steps, shimmer skeletons), a chat-style reply that types out a summary of what was understood, then result cards streamed in one by one. The query stays visible as a chat bubble. Reduced motion skips all delays.
+- `buildSummary()` reply builder with Vitest coverage.
+
+### Changed
+- `scripts/screenshots.mjs` captures the landing page and the app routes and serves `dist` through request interception.
+
+### Removed
+- The separate `landing/` Vite project. Its sections were ported into `src/landing/`, so there is one build and one Vercel deploy.
+
 ## [1.0.0] - 2026-10-29
 
 ### Added
