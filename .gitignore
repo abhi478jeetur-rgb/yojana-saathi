@@ -8,3 +8,4 @@ test-results
 *.log
 .DS_Store
 docs/assets/_video
+design-ref

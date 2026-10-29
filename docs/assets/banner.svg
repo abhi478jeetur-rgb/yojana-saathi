@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1714"/><stop offset="1" stop-color="#3A2A1E"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="600" cy="300" r="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F88F22" stop-opacity=".45"/><stop offset="1" stop-color="#F88F22" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sun" x1="470" y1="300" x2="730" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EA6113"/><stop offset=".55" stop-color="#F88F22"/><stop offset="1" stop-color="#FBB931"/>
+    </linearGradient>
+    <linearGradient id="txt" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EA6113"/><stop offset=".5" stop-color="#F88F22"/><stop offset="1" stop-color="#FBB931"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="28" fill="url(#glow)"/>
+  <path d="M480 300a120 120 0 0 1 240 0z" fill="url(#sun)" opacity=".9"/>
+  <g stroke="#FBB931" stroke-width="7" stroke-linecap="round" opacity=".85">
+    <path d="M600 170v-12"/><path d="M505 190l-18-18"/><path d="M695 190l18-18"/><path d="M462 260h-26"/><path d="M738 260h26"/>
+  </g>
+  <path d="M380 312h440M470 332h260" stroke="#FFE3B3" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+  <text x="600" y="98" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Helvetica, Arial, sans-serif" font-size="68" font-weight="800" fill="#FFF6EA" letter-spacing="-1.5">Yojana <tspan fill="url(#txt)">Saathi</tspan></text>
+  <text x="600" y="142" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#FFE3B3">Your companion for government schemes</text>
+</svg>
