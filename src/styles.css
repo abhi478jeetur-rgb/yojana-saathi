@@ -85,6 +85,8 @@ h4 {
   padding: 16px 0 10px;
 }
 .brand {
+  color: inherit;
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -924,4 +926,8 @@ h4 {
   .sk {
     animation: none;
   }
+}
+
+.chat-row + .results-head {
+  margin-top: 22px;
 }
